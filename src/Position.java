@@ -7,7 +7,7 @@ public class Position{
 
     public Position (String newpos){
         newpos = newpos.toLowerCase();
-        if (newpos.length()!=2 || newpos.length()!=3){
+        if (newpos.length()!=2 && newpos.length()!=3){
             throw new IllegalArgumentException("Ungültige Eingabe");
         } else if (newpos.length() ==2) {
                 x = "abcdefghij".indexOf(newpos.charAt(0));
