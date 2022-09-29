@@ -9,19 +9,26 @@ public class Ship {
         System.out.print("Wo soll dein U-Boot (2er) platziert werden?");
         String newpos = scan.next();
         pos = new Position(newpos);
-        ship.add(pos);
         System.out.printf("Wie soll platziert werden [1] %c [2] %c\n",25,26);
         int way = scan.nextInt();
         switch(way){
             case 1:{
-                for (int i = 1; i < 2; i++)
-                    addIfValid(ship, pos.x, pos.y+i);
-                break;
-            }
+                    for (int i = 1; i>=0; i--){
+                        int newx=pos.x;
+                        int newy=pos.y+i;
+                        if(newx<10 && newx>=0 && newy<10 && newy>=0)
+                            ship.add(new Position(newx, newy));
+                    }
+                    break;
+            }            
             case 2:{
-                for (int i = 1; i < 2; i++)
-                    addIfValid(ship, pos.x+i, pos.y);                
-                break;
+                    for (int i = 1; i>=0; i--){
+                        int newx=pos.x+i;
+                        int newy=pos.y;
+                        if(newx<10 && newx>=0 && newy<10 && newy>=0)
+                            ship.add(new Position(newx, newy));
+                    }
+                    break;
             }            
         }
         return ship;
@@ -30,40 +37,55 @@ public class Ship {
         System.out.print("Wo soll dein Zerstörer (3er) platziert werden?");
         String newpos = scan.next();
         pos = new Position(newpos);
-        ship.add(pos);
         System.out.printf("Wie soll platziert werden [1] %c [2] %c\n",25,26);
         int way = scan.nextInt();
         switch(way){
             case 1:{
-                for (int i = 1; i < 3; i++)
-                    addIfValid(ship, pos.x, pos.y+i);
-                break;
-            }
-            case 2:{
-                for (int i = 1; i < 3; i++)
-                    addIfValid(ship, pos.x+i, pos.y);               
-                break;
+                    for (int i = 2; i>=0; i--){
+                        int newx=pos.x;
+                        int newy=pos.y+i;
+                        if(newx<10 && newx>=0 && newy<10 && newy>=0)
+                            ship.add(new Position(newx, newy));
+                    }
+                    break;
             }            
+            case 2:{
+                    for (int i = 2; i>=0; i--){
+                        int newx=pos.x+i;
+                        int newy=pos.y;
+                        if(newx<10 && newx>=0 && newy<10 && newy>=0)
+                            ship.add(new Position(newx, newy));
+                    }
+                    break;
+            }
         }
         return ship;
     }
     public ArrayList <Position> setShip4(Scanner scan){
-        System.out.print("Wo soll dein Kreuzer(4er) platziert werden?");
+        System.out.print("Wo soll dein Zerstörer (4er) platziert werden?");
         String newpos = scan.next();
         pos = new Position(newpos);
         System.out.printf("Wie soll platziert werden [1] %c [2] %c\n",25,26);
         int way = scan.nextInt();
         switch(way){
             case 1:{
-                for (int i = 1; i < 4; i++)
-                    addIfValid(ship, pos.x, pos.y+i);
-                break;
-            }
+                    for (int i = 3; i>=0; i--){
+                        int newx=pos.x;
+                        int newy=pos.y+i;
+                        if(newx<10 && newx>=0 && newy<10 && newy>=0)
+                            ship.add(new Position(newx, newy));
+                    }
+                    break;
+            }            
             case 2:{
-                for (int i = 1; i < 4; i++)
-                    addIfValid(ship, pos.x+i, pos.y);               
-                break;
-            }          
+                    for (int i = 3; i>=0; i--){
+                        int newx=pos.x+i;
+                        int newy=pos.y;
+                        if(newx<10 && newx>=0 && newy<10 && newy>=0)
+                            ship.add(new Position(newx, newy));
+                    }
+                    break;
+            }
         }
         return ship;
     }
@@ -75,22 +97,28 @@ public class Ship {
         int way = scan.nextInt();
         switch(way){
             case 1:{
-                for (int i = 1; i < 5; i++)
-                    addIfValid(ship, pos.x, pos.y+i);
-                break;
-            }
+                    for (int i = 4; i>=0; i--){
+                        if(pos.x<10 && pos.x>=0 && pos.y+i<10 && pos.y+i>=0)
+                            ship.add(new Position(pos.x, pos.y+i));
+                    }
+                    break;
+            }            
             case 2:{
-                for (int i = 1; i < 5; i++)
-                    addIfValid(ship, pos.x+i, pos.y);               
-                break;
-            }             
+                    for (int i = 4; i>=0; i--){
+                        int newx=pos.x+i;
+                        int newy=pos.y;
+                        if(newx<10 && newx>=0 && newy<10 && newy>=0)
+                            ship.add(new Position(newx, newy));
+                    }
+                    break;
+            }
         }
         return ship;
     }
 
 
-    private void addIfValid(ArrayList<Position> moves, int newcol, int newrow){
-        if(newcol<8 && newcol>=0 && newrow<8 && newrow>=0)
-            moves.add(new Position(newcol, newrow));
-    }
+    // private void addIfValid(ArrayList<Position> ship, int newx, int newy){
+    //     if(newx<10 && newx>=0 && newy<10 && newy>=0)
+    //         ship.add(new Position(newx, newy));
+    // }
 }
