@@ -1,10 +1,36 @@
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Ship {
     public ArrayList<Position> body;
     
-    //Constructor
+    //Constructor CPU
+    public Ship(int typ){
+        body = new ArrayList<>();
+        var r = new Random();
+        int x = r.nextInt(10);
+        int y = r.nextInt(10);
+        var pos = new Position(x, y);
+        int way = r.nextInt(2)+1;
+        switch(way){
+                // down
+                case 1:{
+                    for (int i = 0; i < typ; i++)
+                        addIfValid(body, pos.x+i, pos.y);
+                    break;
+                }
+                // left
+                case 2:{
+                    for (int i = 0; i < typ; i++)
+                        addIfValid(body, pos.x, pos.y+i);               
+                    break;
+                }
+        }
+        checkBodySize(typ);
+    }
+
+    //Constructor Player
     public Ship(Scanner scan,int typ){
         body = new ArrayList<>();
         switch (typ){
@@ -52,6 +78,12 @@ public class Ship {
         if (body.size()!=typ){
             body.clear();
             body.addAll(new Ship(scan, typ).body);
+        }
+    }
+    private void checkBodySize(int typ){
+        if (body.size()!=typ){
+            body.clear();
+            body.addAll(new Ship(typ).body);
         }
     }
     private void addIfValid(ArrayList<Position> moves, int x, int y){
