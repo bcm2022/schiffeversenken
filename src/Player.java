@@ -9,22 +9,22 @@ public class Player {
         //4*2er
         for(int i=0; i<4; i++){
             var ship = new Ship(scan,2);
-            fleet.add(ship);
+            addIfValid(ship);
         }
         // //3*3er
         for(int i=0; i<3; i++){
             var ship = new Ship(scan,3);
-            fleet.add(ship);
+            addIfValid(ship);
         }
         // //2*4er
         for(int i=0; i<2; i++){
             var ship = new Ship(scan,4);
-            fleet.add(ship);
+            addIfValid(ship);
         }
         // //1*5er
         for(int i=0; i<1; i++){
             var ship = new Ship(scan,5);
-            fleet.add(ship);
+            addIfValid(ship);
         }
     }
 
@@ -53,4 +53,24 @@ public class Player {
         System.out.println("\n");
         
     }
+
+        //Ship check
+        private void addIfValid(Ship newship){
+            loop:
+            for (int i = 0; i<newship.body.size(); i++){
+                Position p2 = newship.body.get(i);
+                for (Ship ship : fleet) {
+                    for (Position p : ship.body){
+                        if (p2.x==p.x && p2.y==p.y){
+                            int typ = newship.body.size();
+                            newship = new Ship(typ);
+                            i=-1;
+                            continue loop;
+                        }
+                    }
+                }
+            }
+            fleet.add(newship);
+        }
+      
 }
