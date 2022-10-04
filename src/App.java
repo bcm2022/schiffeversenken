@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+import Object.Ship;
+import Player.CPU;
+
 public class App {
     public static void main(String[] args) throws Exception {
         var scan = new Scanner(System.in);

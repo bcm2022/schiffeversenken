@@ -1,6 +1,9 @@
+package Object;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+
+import Controller.Position;
 
 public class Ship {
     public ArrayList<Position> body;
@@ -17,13 +20,13 @@ public class Ship {
                 // down
                 case 1:{
                     for (int i = 0; i < typ; i++)
-                        addIfValid(body, pos.x+i, pos.y);
+                        addIfValid(body, pos.getX()+i, pos.getY());
                     break;
                 }
                 // right
                 case 2:{
                     for (int i = 0; i < typ; i++)
-                        addIfValid(body, pos.x, pos.y+i);               
+                        addIfValid(body, pos.getX(), pos.getY()+i);               
                     break;
                 }
         }
@@ -60,13 +63,13 @@ public class Ship {
                 // down
                 case 1:{
                     for (int i = 0; i < typ; i++)
-                        addIfValid(body, pos.x+i, pos.y);
+                        addIfValid(body, pos.getX()+i, pos.getY());
                     break;
                 }
                 // left
                 case 2:{
                     for (int i = 0; i < typ; i++)
-                        addIfValid(body, pos.x, pos.y+i);               
+                        addIfValid(body, pos.getX(), pos.getY()+i);               
                     break;
                 }
         }

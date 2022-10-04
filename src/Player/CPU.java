@@ -1,33 +1,36 @@
+package Player;
 import java.util.ArrayList;
-import java.util.Scanner;
 
-public class Player {
-    private ArrayList <Ship> fleet= new ArrayList<>();
+import Controller.Position;
+import Object.Ship;
+
+public class CPU {
+    public ArrayList <Ship> fleet= new ArrayList<>();
 
     //Constructor
-    public Player (Scanner scan){
+    public CPU (){
         //4*2er
         for(int i=0; i<4; i++){
-            var ship = new Ship(scan,2);
+            var ship = new Ship(2);
             addIfValid(ship);
         }
         // //3*3er
         for(int i=0; i<3; i++){
-            var ship = new Ship(scan,3);
+            var ship = new Ship(3);
             addIfValid(ship);
         }
         // //2*4er
         for(int i=0; i<2; i++){
-            var ship = new Ship(scan,4);
+            var ship = new Ship(4);
             addIfValid(ship);
         }
         // //1*5er
         for(int i=0; i<1; i++){
-            var ship = new Ship(scan,5);
+            var ship = new Ship(5);
             addIfValid(ship);
         }
     }
-
+    
     //Battlefield
     public void showBoard(){
         var board = new char[10][10];
@@ -38,7 +41,7 @@ public class Player {
         
         for (Ship ship : fleet) {
             for (Position p : ship.body) {
-                board[p.x][p.y] = '#';
+                board[p.getX()][p.getY()] = (char) ship.body.size();
             }
         }
 
@@ -53,24 +56,24 @@ public class Player {
         System.out.println("\n");
         
     }
-
-        //Ship check
-        private void addIfValid(Ship newship){
-            loop:
-            for (int i = 0; i<newship.body.size(); i++){
-                Position p2 = newship.body.get(i);
-                for (Ship ship : fleet) {
-                    for (Position p : ship.body){
-                        if (p2.x==p.x && p2.y==p.y){
-                            int typ = newship.body.size();
-                            newship = new Ship(typ);
-                            i=-1;
-                            continue loop;
-                        }
+    
+    //Ship check
+    private void addIfValid(Ship newship){
+        loop:
+        for (int i = 0; i<newship.body.size(); i++){
+            Position p2 = newship.body.get(i);
+            for (Ship ship : fleet) {
+                for (Position p : ship.body){
+                    if (p2.getX()==p.getX() && p2.getY()==p.getY()){
+                        int typ = newship.body.size();
+                        newship = new Ship(typ);
+                        i=-1;
+                        continue loop;
                     }
                 }
             }
-            fleet.add(newship);
         }
-      
+        fleet.add(newship);
+    }
+    
 }

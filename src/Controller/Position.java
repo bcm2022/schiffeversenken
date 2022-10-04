@@ -1,5 +1,7 @@
+package Controller;
 public class Position{
-    int x, y;
+    private int x, y;
+
 
     //Constructor
     public Position (int x, int y){
@@ -17,7 +19,13 @@ public class Position{
             throw new IllegalArgumentException("Ungültiges Zeichen!");
     }
 
-    
+    public int getX() {
+        return x;
+    }
+    public int getY() {
+        return y;
+    }
+
     @Override
     public String toString(){
         return ""+"abcdefghij".charAt(x)+(y+1);
