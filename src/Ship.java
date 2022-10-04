@@ -20,7 +20,7 @@ public class Ship {
                         addIfValid(body, pos.x+i, pos.y);
                     break;
                 }
-                // left
+                // right
                 case 2:{
                     for (int i = 0; i < typ; i++)
                         addIfValid(body, pos.x, pos.y+i);               

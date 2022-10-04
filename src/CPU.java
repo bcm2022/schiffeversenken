@@ -27,17 +27,6 @@ public class CPU {
         }
     }
     
-    private void addIfValid( Ship newship){
-        for (Position p2 : newship.body)
-            for (Ship ship : fleet) {
-                for (Position p : ship.body){
-                    if (p.equals(p2)){
-                        newship = new Ship(newship.body.size());
-                    }
-                }
-        }
-        fleet.add(newship);
-    }
     //Battlefield
     public void showBoard(){
         var board = new char[10][10];
@@ -63,4 +52,24 @@ public class CPU {
         System.out.println("\n");
         
     }
+    
+    //Ship check
+    private void addIfValid(Ship newship){
+        loop:
+        for (int i = 0; i<newship.body.size(); i++){
+            Position p2 = newship.body.get(i);
+            for (Ship ship : fleet) {
+                for (Position p : ship.body){
+                    if (p2.x==p.x && p2.y==p.y){
+                        int typ = newship.body.size();
+                        newship = new Ship(typ);
+                        i=-1;
+                        continue loop;
+                    }
+                }
+            }
+        }
+        fleet.add(newship);
+    }
+    
 }
