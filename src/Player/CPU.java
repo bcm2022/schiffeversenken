@@ -1,33 +1,35 @@
 package Player;
 import java.util.ArrayList;
+import java.util.Random;
 
 import Controller.Position;
-import Object.Ship;
+import Object.*;
 
 public class CPU {
+    Random r = new Random();
     public ArrayList <Ship> fleet= new ArrayList<>();
 
     //Constructor
     public CPU (){
         //4*2er
         for(int i=0; i<4; i++){
-            var ship = new Ship(2);
-            addIfValid(ship);
+            var ship = new UBoot(new Position(r.nextInt(10),r.nextInt(10)));
+            // addIfValid(ship);
         }
         // //3*3er
         for(int i=0; i<3; i++){
-            var ship = new Ship(3);
-            addIfValid(ship);
+            var ship = new Destroyer(new Position(r.nextInt(10),r.nextInt(10)));
+            // addIfValid(ship);
         }
         // //2*4er
         for(int i=0; i<2; i++){
-            var ship = new Ship(4);
-            addIfValid(ship);
+            var ship = new Cruiser(new Position(r.nextInt(10),r.nextInt(10)));
+            // addIfValid(ship);
         }
         // //1*5er
         for(int i=0; i<1; i++){
-            var ship = new Ship(5);
-            addIfValid(ship);
+            var ship = new Battleship(new Position(r.nextInt(10),r.nextInt(10)));
+            // addIfValid(ship);
         }
     }
     
@@ -55,25 +57,5 @@ public class CPU {
         }
         System.out.println("\n");
         
-    }
-    
-    //Ship check
-    private void addIfValid(Ship newship){
-        loop:
-        for (int i = 0; i<newship.body.size(); i++){
-            Position p2 = newship.body.get(i);
-            for (Ship ship : fleet) {
-                for (Position p : ship.body){
-                    if (p2.getX()==p.getX() && p2.getY()==p.getY()){
-                        int typ = newship.body.size();
-                        newship = new Ship(typ);
-                        i=-1;
-                        continue loop;
-                    }
-                }
-            }
-        }
-        fleet.add(newship);
-    }
-    
+    }    
 }
