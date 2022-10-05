@@ -18,28 +18,28 @@ public class CPU {
             ship = new UBoot(new Position(r.nextInt(10),r.nextInt(10)));
             while (!ship.setShip(r.nextInt(4)));
             addShip(ship);
-            System.out.println(ship.body+"\t\t\t"+ship.getClass()+"\t");    
+            // System.out.println(ship.body+"\t\t\t"+ship.getClass()+"\t");    
         }
         // //3*3er
         for(int i=0; i<3; i++){
             ship = new Destroyer(new Position(r.nextInt(10),r.nextInt(10)));
             while (!ship.setShip(r.nextInt(4)));
             addShip(ship);
-            System.out.println(ship.body+"\t\t\t"+ship.getClass()+"\t");    
+            // System.out.println(ship.body+"\t\t\t"+ship.getClass()+"\t");    
         }
         // //2*4er
         for(int i=0; i<2; i++){
             ship = new Cruiser(new Position(r.nextInt(10),r.nextInt(10)));
             while (!ship.setShip(r.nextInt(4)));
             addShip(ship);
-            System.out.println(ship.body+"\t\t"+ship.getClass()+"\t");
+            // System.out.println(ship.body+"\t\t"+ship.getClass()+"\t");
         }
         // //1*5er
         for(int i=0; i<1; i++){
             ship = new Battleship(new Position(r.nextInt(10),r.nextInt(10)));
             while (!ship.setShip(r.nextInt(4)));
             addShip(ship);
-            System.out.println(ship.body+"\t\t"+ship.getClass()+"\t");
+            // System.out.println(ship.body+"\t\t"+ship.getClass()+"\t");
         }
     }
     
@@ -57,14 +57,14 @@ public class CPU {
             }
         }
 
-        System.out.println("    1 2 3 4 5 6 7 8 9 10");
-        for (int x = 0; x < board.length; x++) {
-            System.out.printf("%c |",65+x);
-            for (int y = 0; y < board[x].length; y++) {
-                System.out.print(" "+board[x][y]);
-            }
-            System.out.println(" |");        
-        }
+        // System.out.println("    1 2 3 4 5 6 7 8 9 10");
+        // for (int x = 0; x < board.length; x++) {
+        //     System.out.printf("%c |",65+x);
+        //     for (int y = 0; y < board[x].length; y++) {
+        //         System.out.print(" "+board[x][y]);
+        //     }
+        //     System.out.println(" |");        
+        // }
         System.out.println("\n");
         
     }    

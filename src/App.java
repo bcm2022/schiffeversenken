@@ -7,6 +7,5 @@ public class App {
         var p1 = new CPU();
         scan.close();
         System.out.println();
-        p1.showBoard();
     }
 }
