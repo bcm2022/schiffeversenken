@@ -1,97 +1,54 @@
 package Object;
+
 import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.Arrays;
 
 import Controller.Position;
 
 public class Ship {
-    public ArrayList<Position> body;
+    public int size;
+    private char [] direction = new char[4];
+    public ArrayList<Position> body=new ArrayList<>();
     
-    //Constructor CPU
-    public Ship(int typ){
-        body = new ArrayList<>();
-        var r = new Random();
-        int x = r.nextInt(10);
-        int y = r.nextInt(10);
-        var pos = new Position(x, y);
-        int way = r.nextInt(2)+1;
-        switch(way){
-                // down
-                case 1:{
-                    for (int i = 0; i < typ; i++)
-                        addIfValid(body, pos.getX()+i, pos.getY());
-                    break;
-                }
-                // right
-                case 2:{
-                    for (int i = 0; i < typ; i++)
-                        addIfValid(body, pos.getX(), pos.getY()+i);               
-                    break;
-                }
-        }
-        checkBodySize(typ);
+    public Ship(Position pos, int size){
+        this.size=size;
+        addIfValid(body, pos.getX(), pos.getY());
+        validDirection(body.get(0));
+        
     }
 
-    //Constructor Player
-    public Ship(Scanner scan,int typ){
-        body = new ArrayList<>();
-        switch (typ){
-            case 2:{
-                System.out.print("Wo soll dein U-Boot (2er) platziert werden?");
-                break;
-            }
-            case 3:{
-                System.out.print("Wo soll dein Zerstörer (3er) platziert werden?");
-                break;
-            }
-            case 4:{
-                System.out.print("Wo soll dein Kreuzer(4er) platziert werden?");
-                break;
-            }
-            case 5:{
-                System.out.print("Wo soll dein Schlachtschiff (5er) platziert werden?");
-                break;
-            }
-        }
-            
-        String newpos = scan.next();
-        var pos = new Position(newpos);
-        System.out.printf("Wie soll platziert werden [1] %c [2] %c\n",25,26);
-        int way = scan.nextInt();
-        switch(way){
-                // down
+    private void validDirection(Position pos){
+        int x=pos.getX(), y=pos.getY();
+        
+        for(int i =0; i<4; i++)
+            switch(i){
+                case 0:{
+                    if(x+size<10 && x+size>=0 && y<10 && y>=0)
+                        direction[i]=8595;
+                    break;
+                }
                 case 1:{
-                    for (int i = 0; i < typ; i++)
-                        addIfValid(body, pos.getX()+i, pos.getY());
+                    if(x-size<10 && x-size>=0 && y<10 && y>=0)
+                        direction[i]=8593;
                     break;
                 }
-                // left
                 case 2:{
-                    for (int i = 0; i < typ; i++)
-                        addIfValid(body, pos.getX(), pos.getY()+i);               
+                    if(x<10 && x>=0 && y+size<10 && y+size>=0)
+                        direction[i]=8594;
                     break;
                 }
-        }
-        checkBodySize(scan, typ);
+                case 3:{
+                    if(x<10 && x>=0 && y-size<10 && y-size>=0)
+                        direction[i]=8592;
+                    break;
+                }
+            }
     }
 
     //Check Valid & Size
-    private void checkBodySize(Scanner scan, int typ){
-        if (body.size()!=typ){
-            body.clear();
-            body.addAll(new Ship(scan, typ).body);
-        }
-    }
-    private void checkBodySize(int typ){
-        if (body.size()!=typ){
-            body.clear();
-            body.addAll(new Ship(typ).body);
-        }
-    }
-    private void addIfValid(ArrayList<Position> moves, int x, int y){
+    private void addIfValid(ArrayList<Position> al, int x, int y){
         if(x<10 && x>=0 && y<10 && y>=0)
-            moves.add(new Position(x, y));
+            al.add(new Position(x, y));
     }
 
 }
