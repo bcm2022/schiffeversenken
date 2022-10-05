@@ -11,25 +11,35 @@ public class CPU {
 
     //Constructor
     public CPU (){
+        Ship ship;
+        
         //4*2er
         for(int i=0; i<4; i++){
-            var ship = new UBoot(new Position(r.nextInt(10),r.nextInt(10)));
-            // addIfValid(ship);
+            ship = new UBoot(new Position(r.nextInt(10),r.nextInt(10)));
+            while (!ship.setShip(r.nextInt(4)));
+            addShip(ship);
+            System.out.println(ship.body+"\t\t\t"+ship.getClass()+"\t");    
         }
         // //3*3er
         for(int i=0; i<3; i++){
-            var ship = new Destroyer(new Position(r.nextInt(10),r.nextInt(10)));
-            // addIfValid(ship);
+            ship = new Destroyer(new Position(r.nextInt(10),r.nextInt(10)));
+            while (!ship.setShip(r.nextInt(4)));
+            addShip(ship);
+            System.out.println(ship.body+"\t\t\t"+ship.getClass()+"\t");    
         }
         // //2*4er
         for(int i=0; i<2; i++){
-            var ship = new Cruiser(new Position(r.nextInt(10),r.nextInt(10)));
-            // addIfValid(ship);
+            ship = new Cruiser(new Position(r.nextInt(10),r.nextInt(10)));
+            while (!ship.setShip(r.nextInt(4)));
+            addShip(ship);
+            System.out.println(ship.body+"\t\t"+ship.getClass()+"\t");
         }
         // //1*5er
         for(int i=0; i<1; i++){
-            var ship = new Battleship(new Position(r.nextInt(10),r.nextInt(10)));
-            // addIfValid(ship);
+            ship = new Battleship(new Position(r.nextInt(10),r.nextInt(10)));
+            while (!ship.setShip(r.nextInt(4)));
+            addShip(ship);
+            System.out.println(ship.body+"\t\t"+ship.getClass()+"\t");
         }
     }
     
@@ -58,4 +68,29 @@ public class CPU {
         System.out.println("\n");
         
     }    
+
+    private void addShip(Ship s){
+        check:
+        while (true){
+            for (Position p : s.body)
+                for(Ship s1 : fleet)
+                    for(Position p1 : s1.body)
+                        if (p.equals(p1)){
+                            if (s instanceof UBoot)
+                                s = new UBoot(new Position(r.nextInt(10),r.nextInt(10)));
+                            else if (s instanceof Destroyer)
+                                s = new Destroyer(new Position(r.nextInt(10),r.nextInt(10)));
+                            else if (s instanceof Cruiser)
+                                s = new Cruiser(new Position(r.nextInt(10),r.nextInt(10)));
+                            else if (s instanceof Battleship)
+                                s = new Battleship(new Position(r.nextInt(10),r.nextInt(10)));
+                            while (!s.setShip(r.nextInt(4)));
+                            addShip(s);
+                            break check;
+                        }
+            fleet.add(s);
+            break;
+        }
+        
+    }
 }

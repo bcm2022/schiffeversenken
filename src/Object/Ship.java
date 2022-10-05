@@ -5,50 +5,112 @@ import java.util.Arrays;
 
 import Controller.Position;
 
-public class Ship {
+public abstract class Ship {
     public int size;
-    private char [] direction = new char[4];
+    private Position pos;
     public ArrayList<Position> body=new ArrayList<>();
     
     public Ship(Position pos, int size){
         this.size=size;
-        addIfValid(body, pos.getX(), pos.getY());
-        validDirection(body.get(0));
-        
+        this.pos=pos;
+        validDirection();
     }
 
-    private void validDirection(Position pos){
+    public boolean setShip(int direction){
+        boolean set=false;
+        int x=pos.getX(), y=pos.getY();
+        char [] d = validDirection();
+        Arrays.sort(d);
+        switch(direction){
+            //left
+            case 0:{
+                int search = Arrays.binarySearch(d, (char)2190);
+                if (search!=-1){
+                    for (int i=size-1; i >= 0; i--)
+                        addIfValid(x, y-i);
+                    if(body.size()==size)
+                        set=true;
+                    else body.clear();
+                }
+                break;
+            }
+            //up
+            case 1:{
+                int search = Arrays.binarySearch(d, (char)2191);
+                if (search!=-1)
+                    for (int i=size-1; i >= 0; i--){
+                        addIfValid(x-i, y);
+                        if(body.size()==size)
+                            set=true;
+                        else body.clear();
+                    }
+                break;
+            }
+            //down
+            case 2:{
+                int search = Arrays.binarySearch(d, (char)2193);
+                if (search!=-1){
+                    for (int i=size-1; i >= 0; i--)
+                        addIfValid(x+i, y);
+                    if(body.size()==size)
+                        set=true;
+                        else body.clear();
+                }
+                break;
+            }
+            //right
+            case 3:{
+                int search = Arrays.binarySearch(d, (char)2192);
+                if (search!=-1){
+                    for (int i=size-1; i >= 0; i--)
+                        addIfValid(x, y+i);
+                    if(body.size()==size)
+                        set=true;
+                    else body.clear();
+                }
+                break;
+            }
+        }
+        return set;
+    }
+
+    private char [] validDirection(){
+        char [] direction = new char[4];
         int x=pos.getX(), y=pos.getY();
         
         for(int i =0; i<4; i++)
             switch(i){
+                //left
                 case 0:{
-                    if(x+size<10 && x+size>=0 && y<10 && y>=0)
-                        direction[i]=8595;
+                    if(x<10 && x>=0 && y-size-1<10 && y-size-1>=0)
+                        direction[i]=2190;
                     break;
                 }
+                //up
                 case 1:{
-                    if(x-size<10 && x-size>=0 && y<10 && y>=0)
-                        direction[i]=8593;
+                    if(x-size-1<10 && x-size-1>=0 && y<10 && y>=0)
+                        direction[i]=2191;
                     break;
                 }
+                //down
                 case 2:{
-                    if(x<10 && x>=0 && y+size<10 && y+size>=0)
-                        direction[i]=8594;
+                    if(x+size-1<10 && x+size-1>=0 && y<10 && y>=0)
+                        direction[i]=2193;
                     break;
                 }
+                //right
                 case 3:{
-                    if(x<10 && x>=0 && y-size<10 && y-size>=0)
-                        direction[i]=8592;
+                    if(x<10 && x>=0 && y+size-1<10 && y+size-1>=0)
+                        direction[i]=2192;
                     break;
                 }
             }
+        return direction;
     }
 
-    //Check Valid & Size
-    private void addIfValid(ArrayList<Position> al, int x, int y){
+    private void addIfValid(int x, int y){
         if(x<10 && x>=0 && y<10 && y>=0)
-            al.add(new Position(x, y));
+            body.add(new Position(x, y));
     }
 
 }
