@@ -1,10 +1,14 @@
 package Object;
-
 import Controller.Position;
 
 public class Cruiser extends Ship{
-        static int size=4;
+    static int size=4;
+    String name="Cruiser";
+    int maxnumber=2;
+
+
     public Cruiser(Position pos){
-        super(pos,size);
+        super(size, pos);
+        super.name=this.name;
     }
 }

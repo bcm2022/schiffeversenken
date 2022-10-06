@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 import Player.CPU;
 
@@ -6,6 +7,6 @@ public class App {
         var scan = new Scanner(System.in);
         var p1 = new CPU();
         scan.close();
-        System.out.println();
+        System.out.println(p1);
     }
 }

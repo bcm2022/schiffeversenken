@@ -1,13 +1,14 @@
 package Controller;
 public class Position{
-    private int x, y;
+    public int x, y;
 
 
-    //Constructor
+    //Constructor (default)
     public Position (int x, int y){
         this.x = x;
         this.y = y;
     }
+    //Constructor (String)
     public Position (String newpos){
         newpos = newpos.toLowerCase();
         if (newpos.length()!=2 && newpos.length()!=3){
@@ -18,14 +19,16 @@ public class Position{
         if (x<0 || y<0)
             throw new IllegalArgumentException("Ungültiges Zeichen!");
     }
+    
+    // //Getter & Setter
+    // public int getX() {
+    //     return x;
+    // }
+    // public int getY() {
+    //     return y;
+    // }
 
-    public int getX() {
-        return x;
-    }
-    public int getY() {
-        return y;
-    }
-
+    //Overreide
     @Override
     public String toString(){
         return ""+"abcdefghij".charAt(x)+(y+1);
