@@ -1,6 +1,7 @@
 package Controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import Object.Ship;
 
@@ -13,6 +14,8 @@ public class Validation {
             for (int y = 0; y < 10; y++)
              p.add(new Position(x, y));
     }
+
+
 
 
     public boolean check(Ship s){

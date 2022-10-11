@@ -2,7 +2,6 @@ package Player;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 import Controller.Position;
 import Object.*;
 
@@ -13,29 +12,33 @@ public class CPU {
     //Constructor
     public CPU (){
         fleet= new ArrayList<Ship>();
-        // var v = new Validation();
+
         //4*2er
         for(int i=0; i<4; i++){
-            var ship = new UBoot(new Position(r.nextInt(10),r.nextInt(10)));
-            fleet.add(ship);
+            i-=addIfvalid(new UBoot(new Position(r.nextInt(10),r.nextInt(10))));
         }
         // //3*3er
         for(int i=0; i<3; i++){
-            var ship = new Destroyer(new Position(r.nextInt(10),r.nextInt(10)));
-            fleet.add(ship);
+            i-=addIfvalid(new Destroyer(new Position(r.nextInt(10),r.nextInt(10))));
         }
         // //2*4er
         for(int i=0; i<2; i++){
-            var ship = new Cruiser(new Position(r.nextInt(10),r.nextInt(10)));
-            fleet.add(ship);
+            i-=addIfvalid(new Cruiser(new Position(r.nextInt(10),r.nextInt(10))));
         }
         // //1*5er
         for(int i=0; i<1; i++){
-            var ship = new Battleship(new Position(r.nextInt(10),r.nextInt(10)));
-            fleet.add(ship);
+            i-=addIfvalid(new Battleship(new Position(r.nextInt(10),r.nextInt(10))));
         }
     }
     
+    private int addIfvalid (Ship s){
+        for (Ship s1 : fleet)
+            if (s1.equals(s))
+                return 1;                
+        fleet.add(s);
+        return 0;
+    }
+
     @Override
     public String toString(){
         return ""+this.getClass()+fleet;
