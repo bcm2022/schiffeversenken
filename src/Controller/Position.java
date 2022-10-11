@@ -19,14 +19,6 @@ public class Position{
         if (x<0 || y<0)
             throw new IllegalArgumentException("Ungültiges Zeichen!");
     }
-    
-    // //Getter & Setter
-    // public int getX() {
-    //     return x;
-    // }
-    // public int getY() {
-    //     return y;
-    // }
 
     //Overreide
     @Override
