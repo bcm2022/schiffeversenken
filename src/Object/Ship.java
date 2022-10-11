@@ -28,17 +28,18 @@ public abstract class Ship {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        Ship other = (Ship) obj;
-        if (body == null)
-            if (other.body != null)
-                return false;
-            else for (Position p : body)
-                    if (other.body.contains(p))
-                        return true;
-        return false;                
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        return  prime * result + ((body == null) ? 0 : body.hashCode());
     }
 
-    
-
+    @Override
+    public boolean equals(Object obj) {
+        Ship other = (Ship) obj;
+        return (body == null) ?
+            (other.body != null) ? 
+                false : false:
+            other.body.stream().filter(p -> body.contains(p)).findAny().isPresent();
+    }
 }
