@@ -7,7 +7,7 @@ public class Destroyer extends Ship {
     String name="Destroyer";
     
     public Destroyer(Position pos, int... line){
-        super(size, pos, line);
+        super(size, pos);
         super.name=this.name;
     }
 }

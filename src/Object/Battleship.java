@@ -7,7 +7,7 @@ public class Battleship extends Ship{
     String name="Battleship";
     
     public Battleship(Position pos, int... line){
-        super(size, pos, line);
+        super(size, pos);
         super.name=this.name;
     }
 }

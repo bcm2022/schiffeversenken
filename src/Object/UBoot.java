@@ -7,7 +7,7 @@ public class UBoot extends Ship {
     String name="U-Boot";
 
     public UBoot(Position p, int... line){
-        super(size,p, line);
+        super(size,p);
         super.name=this.name;
     }
 }

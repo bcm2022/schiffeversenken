@@ -23,8 +23,8 @@ public class Position{
         if (newpos.length()!=2 && newpos.length()!=3){
             throw new IllegalArgumentException("Ungültige Eingabe");
         } else
-            x = "abcdefghij".indexOf(newpos.charAt(0));
-            y = "1234567890".indexOf(newpos.charAt(newpos.length()-1));
+            this.x = "abcdefghij".indexOf(newpos.charAt(0));
+            this.y = "1234567890".indexOf(newpos.charAt(newpos.length()-1));
         if (x<0 || y<0)
             throw new IllegalArgumentException("Ungültiges Zeichen!");
     }

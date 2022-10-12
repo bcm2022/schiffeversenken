@@ -6,7 +6,7 @@ public class Cruiser extends Ship{
     String name="Cruiser";
 
     public Cruiser(Position pos, int... line){
-        super(size, pos, line);
+        super(size, pos);
         super.name=this.name;
     }
 }
