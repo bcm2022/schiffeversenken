@@ -1,4 +1,4 @@
-import Player.*;
+import Player.Player;
 
 public class App {
     public static void main(String[] args) throws Exception {

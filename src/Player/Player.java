@@ -1,8 +1,13 @@
 package Player;
 import java.util.ArrayList;
 import java.util.List;
-import Controller.Position;
-import Object.*;
+
+import Object.Battleship;
+import Object.Cruiser;
+import Object.Destroyer;
+import Object.UBoot;
+import Object.Ressources.Position;
+import Object.Ressources.Ship;
 
 public class Player {
     public List <Ship> fleet = new ArrayList<>();

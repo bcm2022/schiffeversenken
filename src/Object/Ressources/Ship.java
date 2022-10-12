@@ -1,8 +1,7 @@
-package Object;
+package Object.Ressources;
 
 import java.util.Arrays;
 import java.util.List;
-import Controller.Position;
 
 public abstract class Ship {
     //Instance Variable
