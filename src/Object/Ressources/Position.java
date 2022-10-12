@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Position{
     public int x, y;
 
-
     //Constructor (default)
     public Position (int x, int y){
         this.x = x;
@@ -47,6 +46,4 @@ public class Position{
         Position other = (Position) obj;
         return this == obj ? true : obj==null || getClass() != obj.getClass() || x!=other.x || y!= other.y ? false : true;
     }
-
-    
 }
