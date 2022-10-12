@@ -8,8 +8,8 @@ public class Destroyer extends Ship {
     int maxnumber=3;
 
     
-    public Destroyer(Position pos){
-        super(size, pos);
+    public Destroyer(Position pos, int line){
+        super(size, pos, line);
         super.name=this.name;
     }
 }

@@ -8,8 +8,8 @@ public class Battleship extends Ship{
     int maxnumber=1;
 
     
-    public Battleship(Position pos){
-        super(size, pos);
+    public Battleship(Position pos, int line){
+        super(size, pos, line);
         super.name=this.name;
     }
 }

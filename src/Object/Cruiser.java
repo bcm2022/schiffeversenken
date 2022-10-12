@@ -7,8 +7,8 @@ public class Cruiser extends Ship{
     int maxnumber=2;
 
 
-    public Cruiser(Position pos){
-        super(size, pos);
+    public Cruiser(Position pos, int line){
+        super(size, pos, line);
         super.name=this.name;
     }
 }
