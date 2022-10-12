@@ -13,16 +13,16 @@ public class CPU {
     public CPU (){
         //4*2er
         while (fleet.stream().filter(s -> s.body.size()==2).count() <4)
-           addIfvalid(new UBoot(new Position(r.nextInt(10),r.nextInt(10)), r.nextInt(2)));
+           addIfvalid(new UBoot(new Position(r.nextInt(10),r.nextInt(10))));
         // //3*3er
         while (fleet.stream().filter(s -> s.body.size()==3).count() <3)
-            addIfvalid(new Destroyer(new Position(r.nextInt(10),r.nextInt(10)), r.nextInt(2)));
+            addIfvalid(new Destroyer(new Position(r.nextInt(10),r.nextInt(10))));
         // //2*4er
         while (fleet.stream().filter(s -> s.body.size()==4).count() <2)
-            addIfvalid(new Cruiser(new Position(r.nextInt(10),r.nextInt(10)), r.nextInt(2)));
+            addIfvalid(new Cruiser(new Position(r.nextInt(10),r.nextInt(10))));
         // //1*5er
         while (fleet.stream().filter(s -> s.body.size()==5).count() <1)
-            addIfvalid(new Battleship(new Position(r.nextInt(10),r.nextInt(10)), r.nextInt(2)));
+            addIfvalid(new Battleship(new Position(r.nextInt(10),r.nextInt(10))));
     }
     
     private boolean addIfvalid (Ship s){

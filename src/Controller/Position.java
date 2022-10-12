@@ -1,4 +1,7 @@
 package Controller;
+
+import java.util.Scanner;
+
 public class Position{
     public int x, y;
 
@@ -8,9 +11,16 @@ public class Position{
         this.x = x;
         this.y = y;
     }
-    //Constructor (String)
-    public Position (String newpos){
-        newpos = newpos.toLowerCase();
+    //Constructor (Scanner)
+    public Position (){
+        System.out.println("Gib die Position des Schiffes an!");
+        var scan = new Scanner(System.in);
+        setPos(scan);
+        scan.close();
+    }
+    
+    public void setPos(Scanner scan) {
+        String newpos = scan.next();
         if (newpos.length()!=2 && newpos.length()!=3){
             throw new IllegalArgumentException("Ungültige Eingabe");
         } else
@@ -19,36 +29,20 @@ public class Position{
         if (x<0 || y<0)
             throw new IllegalArgumentException("Ungültiges Zeichen!");
     }
-
     //Overreide
     @Override
     public String toString(){
         return ""+"abcdefghij".charAt(x)+(y+1);
     }
-
     @Override
     public int hashCode() {
         final int prime = 31;
-        int result = 1;
-        result = prime * result + x;
-        result = prime * result + y;
-        return result;
+        return (prime * 1 + x)*prime + (y+1);
     }
-    
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
         Position other = (Position) obj;
-        if (x != other.x)
-            return false;
-        if (y != other.y)
-            return false;
-        return true;
+        return this == obj ? true : obj==null || getClass() != obj.getClass() || x!=other.x || y!= other.y ? false : true;
     }
     
 }
