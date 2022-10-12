@@ -7,36 +7,26 @@ import Object.*;
 
 public class CPU {
     Random r = new Random();
-    public List <Ship> fleet;
+    public List <Ship> fleet = new ArrayList<>();
 
     //Constructor
     public CPU (){
-        fleet= new ArrayList<Ship>();
-
         //4*2er
-        for(int i=0; i<4; i++){
-            i-=addIfvalid(new UBoot(new Position(r.nextInt(10),r.nextInt(10)), r.nextInt(2)));
-        }
+        while (fleet.stream().filter(s -> s.body.size()==2).count() <4)
+           addIfvalid(new UBoot(new Position(r.nextInt(10),r.nextInt(10)), r.nextInt(2)));
         // //3*3er
-        for(int i=0; i<3; i++){
-            i-=addIfvalid(new Destroyer(new Position(r.nextInt(10),r.nextInt(10)), r.nextInt(2)));
-        }
+        while (fleet.stream().filter(s -> s.body.size()==3).count() <3)
+            addIfvalid(new Destroyer(new Position(r.nextInt(10),r.nextInt(10)), r.nextInt(2)));
         // //2*4er
-        for(int i=0; i<2; i++){
-            i-=addIfvalid(new Cruiser(new Position(r.nextInt(10),r.nextInt(10)), r.nextInt(2)));
-        }
+        while (fleet.stream().filter(s -> s.body.size()==4).count() <2)
+            addIfvalid(new Cruiser(new Position(r.nextInt(10),r.nextInt(10)), r.nextInt(2)));
         // //1*5er
-        for(int i=0; i<1; i++){
-            i-=addIfvalid(new Battleship(new Position(r.nextInt(10),r.nextInt(10)), r.nextInt(2)));
-        }
+        while (fleet.stream().filter(s -> s.body.size()==5).count() <1)
+            addIfvalid(new Battleship(new Position(r.nextInt(10),r.nextInt(10)), r.nextInt(2)));
     }
     
-    private int addIfvalid (Ship s){
-        for (Ship s1 : fleet)
-            if (s1.equals(s))
-                return 1;                
-        fleet.add(s);
-        return 0;
+    private boolean addIfvalid (Ship s){
+        return fleet.stream().filter(s1 -> s1.equals(s)).findFirst().isPresent() ? false : true && fleet.add(s);
     }
 
     @Override

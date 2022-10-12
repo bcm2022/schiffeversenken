@@ -6,7 +6,7 @@ import Controller.Position;
 
 public abstract class Ship {
     //Instance Variable
-    String name;
+    public String name;
     public List<Position> body;
 
     //Constructor
