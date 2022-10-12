@@ -14,13 +14,12 @@ public class Position{
     //Constructor (Scanner)
     public Position (){
         System.out.println("Gib die Position des Schiffes an!");
-        var scan = new Scanner(System.in);
-        setPos(scan);
-        scan.close();
+        setPos();
     }
     
-    public void setPos(Scanner scan) {
-        String newpos = scan.next();
+    public void setPos() {
+        var scan = new Scanner(System.in);
+        String newpos = scan.next(); scan.close();
         if (newpos.length()!=2 && newpos.length()!=3){
             throw new IllegalArgumentException("Ungültige Eingabe");
         } else
@@ -29,6 +28,7 @@ public class Position{
         if (x<0 || y<0)
             throw new IllegalArgumentException("Ungültiges Zeichen!");
     }
+
     //Overreide
     @Override
     public String toString(){
@@ -44,5 +44,4 @@ public class Position{
         Position other = (Position) obj;
         return this == obj ? true : obj==null || getClass() != obj.getClass() || x!=other.x || y!= other.y ? false : true;
     }
-    
 }

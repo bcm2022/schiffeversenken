@@ -1,18 +1,14 @@
 package Player;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
 import Controller.Position;
 import Object.*;
 
-public class nonCPU {
-    Random r = new Random();
+public class Player {
     public List <Ship> fleet = new ArrayList<>();
 
     //Constructor
-    public nonCPU (){
-        var scan = new Scanner(System.in);
+    public Player (){
         //4*2er
         while (fleet.stream().filter(s -> s.body.size()==2).count() <4){
             addIfvalid(new UBoot(new Position()));
@@ -29,11 +25,14 @@ public class nonCPU {
         while (fleet.stream().filter(s -> s.body.size()==5).count() <1){
             addIfvalid(new Battleship(new Position()));
         }
-        scan.close();
     }
     
     private boolean addIfvalid (Ship s){
         return fleet.stream().filter(s1 -> s1.equals(s)).findFirst().isPresent() ? false : true && fleet.add(s);
+    }
+    @Override
+    public String toString(){
+        return ""+this.getClass()+fleet;
     }
 
 }

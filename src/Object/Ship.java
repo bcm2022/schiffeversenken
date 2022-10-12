@@ -2,21 +2,18 @@ package Object;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 import Controller.Position;
 
 public abstract class Ship {
     //Instance Variable
     public String name;
-    private Random r= new Random();
     private int line;
     public List<Position> body;
 
     //Constructor
-    public Ship(int size, Position p, int... l){
+    public Ship(int size, Position p){
         body = Arrays.asList(new Position[size]);
         var newpos = p;
-        line = l.length >0 ? r.nextInt(2): l[0];
         body.stream().forEach(p1 -> body.set(body.indexOf(p1), line==1 ? 
                     p.x+size<10 ? new Position(newpos.x++, newpos.y) : new Position(p.x--, p.y):
                     p.y+size<10 ? new Position(newpos.x, newpos.y++) : new Position(p.x, p.y--)));
