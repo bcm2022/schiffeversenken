@@ -1,16 +1,16 @@
-package Object;
+package Object.Ressources;
 
 import java.util.Arrays;
 import java.util.List;
-import Controller.Position;
 
 public abstract class Ship {
     //Instance Variable
     public String name;
+    private int line;
     public List<Position> body;
 
     //Constructor
-    public Ship(int size, Position p, int line){
+    public Ship(int size, Position p){
         body = Arrays.asList(new Position[size]);
         var newpos = p;
         body.stream().forEach(p1 -> body.set(body.indexOf(p1), line==1 ? 
