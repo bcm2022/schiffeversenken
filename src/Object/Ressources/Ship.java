@@ -10,9 +10,10 @@ public abstract class Ship {
     public List<Position> body;
 
     //Constructor
-    public Ship(int size, Position p){
+    public Ship(int size){
         body = Arrays.asList(new Position[size]);
-        var newpos = p;
+        var newpos = new Position();
+        var p = newpos;
         body.stream().forEach(p1 -> body.set(body.indexOf(p1), line==1 ? 
                     p.x+size<10 ? new Position(newpos.x++, newpos.y) : new Position(p.x--, p.y):
                     p.y+size<10 ? new Position(newpos.x, newpos.y++) : new Position(p.x, p.y--)));
@@ -32,7 +33,7 @@ public abstract class Ship {
     @Override
     public boolean equals(Object obj) {
         Ship other = (Ship) obj;
-        return (body.isEmpty()) && !other.body.isEmpty() ?
+        return this == obj ? true : body==null && other.body!=null ?
                 false : other.body.stream().filter(p -> body.contains(p)).findFirst().isPresent();
     }
 }
