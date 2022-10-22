@@ -6,7 +6,6 @@ import Object.Battleship;
 import Object.Cruiser;
 import Object.Destroyer;
 import Object.UBoot;
-import Object.Ressources.Position;
 import Object.Ressources.Ship;
 
 public class Player {
@@ -16,19 +15,19 @@ public class Player {
     public Player (){
         //4*2er
         while (fleet.stream().filter(s -> s.body.size()==2).count() <4){
-            addIfvalid(new UBoot(new Position()));
+            addIfvalid(new UBoot());
         }
         // //3*3er
         while (fleet.stream().filter(s -> s.body.size()==3).count() <3){
-            addIfvalid(new Destroyer(new Position()));
+            addIfvalid(new Destroyer());
         }
         // //2*4er
         while (fleet.stream().filter(s -> s.body.size()==4).count() <2){
-            addIfvalid(new Cruiser(new Position()));
+            addIfvalid(new Cruiser());
         }
         // //1*5er
         while (fleet.stream().filter(s -> s.body.size()==5).count() <1){
-            addIfvalid(new Battleship(new Position()));
+            addIfvalid(new Battleship());
         }
     }
     

@@ -1,6 +1,5 @@
 package Object.Ressources;
 
-import java.util.Scanner;
 
 public class Position{
     public int x, y;
@@ -13,23 +12,22 @@ public class Position{
     //Constructor (Scanner)
     public Position (){
         System.out.println("Gib die Position des Schiffes an!");
-        setPos();
     }
     
-    public void setPos() {
-        try (var scan = new Scanner(System.in)) {
-            String newpos = scan.next(); 
-            if (newpos.length()!=2 && newpos.length()!=3){
-                throw new IllegalArgumentException("Ungültige Eingabe");
-            } else {
-                x = "abcdefghij".indexOf(newpos.charAt(0));
-                y = "1234567890".indexOf(newpos.charAt(newpos.length()-1));
-            }
-        }
-        if (x<0 || y<0)
-            throw new IllegalArgumentException("Ungültiges Zeichen!");
+    // public void setPos() {
+    //     try (var scan = new Scanner(System.in)) {
+    //         String newpos = scan.next(); 
+    //         if (newpos.length()!=2 && newpos.length()!=3){
+    //             throw new IllegalArgumentException("Ungültige Eingabe");
+    //         } else {
+    //             x = "abcdefghij".indexOf(newpos.charAt(0));
+    //             y = "1234567890".indexOf(newpos.charAt(newpos.length()-1));
+    //         }
+    //     }
+    //     if (x<0 || y<0)
+    //         throw new IllegalArgumentException("Ungültiges Zeichen!");
         
-    }
+    // }
 
     //Overreide
     @Override
